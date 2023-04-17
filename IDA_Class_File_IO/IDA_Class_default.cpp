@@ -135,12 +135,74 @@ void Task_2()
 	in_file_stream.close();
 }
 
+//Task_3. File deleting
+void Task_3()
+{
+	//remove();
+	std::string File_Path = "file2.txt";
+	std::ofstream out_file_stream;
+	out_file_stream.open(File_Path, std::ios::app);
+
+	if (out_file_stream.is_open()) //проверка на открытие
+	{
+		std::cout << "Файл открыт для записи\n";
+		std::string str = { "Test file text\nTest file text 2\nTest file text 3" };
+		out_file_stream << str << '\n'; // добавление текста в файл
+		std::cout << "Запись добавлена в файл\n";
+
+	}
+	else std::cout << "Ошибка открытия файла\n";
+
+	out_file_stream.close(); //закрываем файл после работы и очистка объекта ofstream
+
+	if (remove(File_Path.c_str()) == 0)
+		std::cout << "File " << File_Path << " deleted\n";
+	else
+		std::cout << "Error file " << File_Path << " deleting\n";
+}
+	
+	//Task_4. Practice
+bool statistic(std::string string_in);
+void Task_4()
+	{
+		std::cout << "\nEnter a word:\n";
+		std::string tmp_word;
+		getline(std::cin, tmp_word);
+
+		if (statistic(tmp_word))
+			std::cout << "\nTrue\n"<< "Запись добавлена в файл\n";
+		else std::cout << "\nFalse\n" << "Ошибка открытия файла\n";
+	}
+bool statistic(std::string string_in)
+{
+	std::string File_Path = "file3_statistic";
+	std::ofstream out_file_stream;
+	out_file_stream.open(File_Path, std::ios::app);
+
+	if (out_file_stream.is_open()) //проверка на открытие
+	{	
+		out_file_stream << string_in << ' ' << string_in.length() << "\n"; // добавление текста в файл				
+		out_file_stream.close();
+		return true;
+	}
+	else 
+	{
+		out_file_stream.close();
+		return false;
+	}		
+	//out_file_stream.close();
+}
+
+
+
 // MAIN ------- MAIN ------- MAIN ------- MAIN ------- MAIN --------
 int main()
 {
 	setlocale(LC_ALL,"Rus");
 	//Task_1();
-	Task_2();
+	//Task_2();
+	//Task_3();
+	Task_4();
 
 
 
