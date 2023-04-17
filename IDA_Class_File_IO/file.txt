@@ -1,0 +1,4 @@
+12 twelwe
+11 eleven
+10 ten
+9 nine
